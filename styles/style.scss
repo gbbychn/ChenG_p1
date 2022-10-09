@@ -1,0 +1,773 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Mulish&display=swap');
+
+// VARIABLES
+$font-stack: 16px/24px "Josefin Sans", sans-serif;
+$font-stack-two: 16px/24px "Mulish", sans-serif;
+$red: #c8304c;
+$blue: #4AC9FF;
+$yellow: #ebb52d;
+$bg-blue: #D1EFFC;
+$dk-gray: #4D474F;
+$lt-gray: #dbdbdb;
+$white: #f1f1f1;
+$black: #383838;
+
+// MIXINS
+@mixin font {
+    font: $font-stack;
+    color: $black;
+}
+
+@mixin flex { 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin btn{
+    background: $red;
+    color: $white;
+    font: $font-stack-two;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+
+// SCSS
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+body {
+    @include font;
+    background-color: $white;
+  }
+  
+p {
+    font: $font-stack-two;
+  }
+
+.nomobile {
+    display:none;
+}
+
+//  NAV 
+nav {
+    @include flex;
+    justify-content: space-between;
+}
+
+.navbar {
+    width: 100%;
+    box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+   
+    .menu-items {
+        display: flex;
+        align-items: center;
+      }
+
+    .nav-container li {
+        list-style: none;
+      }
+
+    .nav-container a {
+        text-decoration: none;
+        color: $black;
+        font: $font-stack-two
+      }
+
+      .nav-container a:hover {
+        border-bottom: 2px solid $red;
+    }
+  }
+  
+.nav-container {
+    display: block;
+    position: relative;
+    height: 60px;
+
+    .checkbox {
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 32px;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+    .hamburger-lines {
+        display: block;
+        height: 26px;
+        width: 32px;
+        position: absolute;
+        top: 17px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .line {
+            display: block;
+            height: 4px;
+            width: 100%;
+            border-radius: 10px;
+            background: $red;
+          }
+
+        .line1 {
+            transform-origin: 0% 0%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .line2 {
+            transition: transform 0.2s ease-in-out;
+          }
+
+        .line3 {
+            transform-origin: 0% 100%;
+            transition: transform 0.4s ease-in-out;
+          }
+      }
+  }
+  
+.navbar .menu-items {
+    padding-top: 120px;
+    background: $white;
+    height: 100vh;
+    width: 100%;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+
+    li {
+        margin-bottom: 1.2rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+  }
+  
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+  
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+  }
+  
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+  }
+  
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+  }
+  
+.nav-container input[type="checkbox"]:checked ~ .logo{
+    display: none;
+  }
+
+.logo {
+    margin-right: 1.2rem;
+    height: 1rem;
+    width:auto;
+}
+
+// BUTTONS
+.btn {
+    color: $white;
+    background-color: $red;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 2px;
+    transition-duration: 0.4s;
+
+    &-red, &-yellow{
+        @extend .btn;
+    }
+
+    &-yellow {
+        background-color: $yellow;
+    }
+}
+
+.btn:hover {
+    background-color: #575757;
+}
+
+// SEARCHBAR
+header {
+    background-color: $red;
+    padding: .5rem 0;
+}
+
+.search {
+    @include flex;
+    width: 80%;
+    justify-content: space-between;
+    border:2px solid $dk-gray;
+    padding: .2rem;
+    background-color: $white;
+    margin:0 auto;
+    border-radius: 4px;
+}
+
+// FOOTER
+footer {
+    background-color: $red;
+    color: $white;
+    padding: 1rem;
+
+    .contact-info {
+        @include flex;
+        justify-content: flex-start;
+        margin-bottom: .5rem;
+    }
+
+    .contact-info + .contact-info, .socials {
+        margin-bottom: 2rem;
+    }
+
+    .wt-logo {
+        height: 1.2rem;
+        width:auto;
+        margin-bottom: 2rem;
+    }
+
+    h5 {
+        font-family: 'Mulish', sans-serif;
+        font-weight: bolder;
+        font-size: 16px;
+    }
+
+    a {
+        text-decoration: none;
+        color: $white;
+        font: 16px 'Mulish', sans-serif;
+    }
+
+}
+
+// HOME PAGE
+.hero {
+    background: $black url(../images/hero.jpg) no-repeat center;
+    height: 15rem;
+    width: auto;
+    padding: 2rem;
+
+    div {
+        background: rgb(59, 52, 61, 0.7);
+        width: 60%;
+        color: $white;
+        padding: .5rem;
+    }
+}
+
+.categories {
+    background: $bg-blue;
+    padding: 1rem;
+
+    h1 {
+        color: $blue;
+        text-align: center;
+        margin: 2rem 0;
+    }
+}
+
+.qtr-box {
+    @include flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.qtr  {
+    width: 50%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.product-cards {
+    @include flex;
+    padding: 1rem;
+    align-items: flex-end;
+}
+
+.half {
+    width: 50%;
+
+    img {
+        width: 97%;
+        height: auto;
+    }
+
+    div {
+        width: 97%;
+        background-color: $black;
+        color: $white;
+        padding: 1rem .25rem;
+        text-align: center;
+    }
+
+    h3 {
+        font-weight: 700;
+        padding-bottom: 1rem;
+    }
+
+}
+
+.featured {
+    text-align: center;
+
+    h2 {
+        color: $yellow;
+        padding-top: 2rem;
+    }
+
+    h4 {
+        color:$dk-gray;
+        padding-bottom: 2rem;
+    }
+}
+
+// PRODUCTS PAGE
+
+.product-categories{
+    margin: 2rem 1rem 0;
+
+    h1 {
+        text-align:center;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+    }
+}
+
+.ftr-st {
+    @include flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+
+    div {
+        @include flex;
+        padding: 5px 15px;
+        border: 2px solid $black;
+
+        img {
+            height: 20px;
+            width: auto;
+            padding-left: 5px;
+        }
+    }
+}
+
+.category {
+    font-size: 18px;
+    color: $red;
+    width: 97%;
+    border-bottom: 2px solid $red;
+    margin: 0 auto;
+
+    &-red, &-yellow, &-blue {
+        @extend .category;
+
+    }
+
+    &-yellow {
+        color:$yellow;
+        border-bottom: 2px solid $yellow;
+    }
+
+    &-blue {
+        color:$blue;
+        border-bottom: 2px solid $blue;
+    }
+}
+
+.circles {
+    @include flex;
+    margin: 1rem 0 3rem;
+    text-align: center;
+}
+
+.c-div {
+    @include flex;
+    margin: .75rem;
+}
+
+.c-div + .c-div {
+    margin-bottom: 3em;
+}
+
+.color {
+    height: 30px;
+    width: 30px;
+    border: 1px solid $black;
+    border-radius: 50%;
+
+    &-1, &-2, &-3, &-4, &-5, &-6, &-7, &-8, &-9, &-10, &-11, &-12 {
+        @extend .color;
+        background-color: black;
+    }
+
+    &-2 {
+        background-color: white;
+    }
+
+    &-3 {
+        background-color: brown;
+    }
+
+    &-4 {
+        background-color: red;
+    }
+
+    &-5 {
+        background-color: pink;
+    }
+
+    &-6 {
+        background-color: orange;
+    }
+
+    &-7 {
+        background-color: yellow;
+    }
+
+    &-8 {
+        background-color: green;
+    }
+
+    &-9 {
+        background-color: lightblue;
+    }
+
+    &-10 {
+        background-color: blue;
+    }
+
+    &-11 {
+        background-color: purple;
+    }
+
+    &-12 {
+        background-color: gray;
+    }
+}
+
+// CUSTOMS PAGE
+
+.customs-hero {
+    background: black url(../images/nasa.jpg) center no-repeat;
+    height: 200px;
+    color: $white;
+
+    div {
+        padding: 6rem 0 1rem 1rem;
+        
+        h1, p {
+            background-color: rgba(0, 0, 0, 0.50);
+            padding: .25rem;
+        }
+    }
+}
+
+.customs-sec {
+    width: 97%;
+    margin: 0 auto;
+
+    h2 {
+        color: $red;
+        margin: 3rem 0 1rem;
+    }
+
+    h2, h4, .trd {
+        text-align: center;
+    }
+
+    h4 {
+        color:$dk-gray;
+        margin-bottom: 1rem;
+    }
+}
+
+.apply {
+    background-color: $dk-gray;
+    color:$white;
+    padding: 2rem 0 1rem;
+    
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        font: 16px/24px 'Mulish', sans-serif;
+    }
+
+    .special {
+        font:$font-stack
+    }
+
+    #name, #addy, #number, #order {
+        width: 100%;
+    }
+
+    #zip, #city, #state {
+        width: 50%;
+    }
+
+   .c {
+        width: 70%;
+    }
+
+    .s {
+        width: 30%;
+    }
+
+    .c-s {
+        @include flex;
+    }
+
+    #order {
+        height: 5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+// CONTACT
+.contact {
+    width: 97%;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+
+    h2 {
+        text-align: center;
+        padding: 1rem 0 .5rem;
+    }
+}
+
+.info {
+    background-color: $lt-gray;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    @include flex;
+    justify-content: flex-start;
+    padding-bottom: .5rem;
+
+    img {
+        height: 25px;
+        width: auto;
+        margin-right: .25rem;
+    }
+}
+
+.contact-form {
+    background-color: $dk-gray;
+    color: $white;
+    padding: 2rem 0;
+
+    form {
+        width: 97%;
+        margin: 0 auto;
+    }
+
+    #name, #email, #message {
+        width: 100%;
+    }
+
+    #message {
+        height: 6rem;
+    }
+
+    label {
+        font-family: 'Mulish', sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        color: $yellow;
+    }
+}
+
+// ABOUT
+
+.about-hero {
+    background: $black url(../images/disco-hero.jpg) center no-repeat;
+    height: 15rem;
+}
+
+.about-sec {
+    width: 97%;
+    margin: 0 auto;
+
+    h2, h4 {
+        color: $blue;
+        text-align: center;
+        padding: 1rem 0;
+    }
+}
+
+.blinkees {
+    padding: 1rem .5rem;
+    margin: 2rem 0 1rem;
+    background-color: $dk-gray;
+    color: $lt-gray;
+
+    h3 {
+        padding-bottom: .5rem;
+    }
+}
+
+.reviews {
+    @include flex;
+    margin-bottom: 1rem;
+
+    .review1 {
+        background-color: $bg-blue;
+        padding: 1rem;
+
+        .pf {
+            @include flex;
+            justify-content: flex-start;
+
+            img {
+                height: 40px;
+                width: auto;
+            }
+
+            h1 {
+                font-size: 16px;
+            }
+
+            h5 {
+                font-size: 12px;
+                color:gray;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .nomobile {
+      display: block;
+    }
+
+    .mobile {
+        display:none;
+    }
+
+    // FOOTER
+    footer {
+        display: flex;
+    
+        .contact-info + .contact-info, .socials {
+            margin-bottom: 0;
+        }
+    
+        .wt-logo {
+            margin-bottom: 0;
+        }
+
+        .ft-qtr {
+            width: 25%;
+            padding-right: 20px;
+        }
+  
+    }
+
+    // HOME
+    .hero {
+        padding: 0;
+    
+        div {
+            background: rgb(59, 52, 61, 0.8);
+            width: 40%;
+            padding: 4rem 0 0 4rem;
+            height: 15rem;
+        }
+    }
+
+    .half {
+        width: 25%;
+    }
+
+    .qtr-box {
+        flex-wrap: nowrap;
+    }
+    
+    .qtr  {
+        width: 25%;
+    }
+
+    // PRODUCTS
+
+    .c-box {
+        @include flex;
+        justify-content: flex-start;
+        margin: 0 0 3rem 1.5rem;
+
+        .c-div {
+            justify-content: flex-start;
+    
+            div{
+                margin-right: 1rem;
+            }
+        }
+
+        .c-div + .c-div {
+            margin-bottom: 1rem;
+        }
+    }
+
+    // CUSTOMS
+    .customs-hero {
+
+        div {
+            padding: 3rem 0 1rem 5rem;
+            width: 30%;
+            
+            h1, p {
+                background-color: rgba(0, 0, 0, 0.50);
+                padding: .25rem;
+            }
+        }
+    }
+
+    // CONTACT
+    .map {
+        text-align: center;
+    }
+
+    // ABOUT
+    .about-hero {
+        height: 30rem;
+    }
+
+    .about-sec, .reviews{
+        margin-bottom: 2rem;
+    }
+
+    .rev {
+        @include flex;
+        margin-right: .75rem;
+
+        div {
+            width: 30%
+        }
+    }
+  }
